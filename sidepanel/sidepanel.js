@@ -91,6 +91,7 @@
   var agentStepCount = 0;
   var agentLogBubble = null; // The current agent log message bubble (for appending steps)
   var agentLogSteps  = null; // The steps container inside the agent log bubble
+  var agentLogPlan   = null; // The plan container (revealed when Plan Generated arrives)
   var pendingAgentText = ""; // Text waiting for tab choice
 
   var PROVIDERS = ["ollama_cloud", "ollama_local", "chatgpt", "claude", "gemini", "deepseek", "grok", "custom"];
@@ -358,6 +359,13 @@
         '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>' +
         'Agent Working' +
       '</div>' +
+      '<div class="agent-log-plan hidden" id="agentPlanContainer">' +
+        '<div class="agent-log-plan-title">' +
+          '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>' +
+          'Plan' +
+        '</div>' +
+        '<ol></ol>' +
+      '</div>' +
       '<div class="agent-log-steps" id="agentStepsContainer"></div>';
 
     msg.appendChild(bubble);
@@ -365,6 +373,7 @@
 
     agentLogBubble = msg;
     agentLogSteps = bubble.querySelector(".agent-log-steps");
+    agentLogPlan = bubble.querySelector(".agent-log-plan");
     agentStepCount = 0;
     lastShownLabel = "";
     pendingThinking = null;
@@ -493,6 +502,26 @@
     var kind = log.kind || "system";
     var data = log.data || {};
     var label = log.label || "";
+
+    // Plan rendering: when the background broadcasts "Plan Generated", populate
+    // the plan section above the step list and reveal it. Stays visible for
+    // the entire run so the user can see the agent's intended approach.
+    if (kind === "system" && label && label.indexOf("Plan Generated") >= 0) {
+      if (agentLogPlan && Array.isArray(data.plan) && data.plan.length > 0) {
+        var ol = agentLogPlan.querySelector("ol");
+        if (ol) {
+          ol.innerHTML = "";
+          data.plan.forEach(function(step) {
+            var li = document.createElement("li");
+            li.textContent = step;
+            ol.appendChild(li);
+          });
+        }
+        agentLogPlan.classList.remove("hidden");
+        scrollToBottom();
+      }
+      return;
+    }
 
     // Buffer LLM data for attachment to next visible step
     if (kind === "thinking") {
@@ -761,6 +790,7 @@
     hideThinkingIndicator();
     agentLogBubble = null;
     agentLogSteps = null;
+    agentLogPlan = null;
   }
 
   /* ── Thinking indicator inside agent log ── */
@@ -926,6 +956,7 @@
     seenLogIds = {};
     agentLogBubble = null;
     agentLogSteps = null;
+    agentLogPlan = null;
     thinkingEl = null;
     agentStepCount = 0;
     lastShownLabel = "";

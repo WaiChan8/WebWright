@@ -481,6 +481,114 @@
     footer .footer-links a { color: var(--text-2); font-weight: 500; }
     footer .footer-links a:hover { color: var(--accent); }
     .footer-tag { font-size: 0.85em; opacity: 0.7; }
+
+    /* ─────────────────────────────────────────────
+       Mobile / tablet responsive layer
+       ───────────────────────────────────────────── */
+
+    /* Tablet portrait + small laptops: tighten section padding, stack hero CTAs */
+    @media (max-width: 880px) {
+      .wrap { padding: 0 20px; }
+      section { padding: 64px 0; }
+      .hero { padding: 80px 0 60px; }
+      .manifesto { padding: 48px 0; }
+      .final-cta { padding: 72px 0; }
+    }
+
+    /* Phone landscape / small tablet portrait */
+    @media (max-width: 760px) {
+      .wrap { padding: 0 18px; }
+      section { padding: 52px 0; }
+
+      /* Hero */
+      .hero { padding: 56px 0 48px; }
+      .hero-logo { width: 76px; height: 76px; margin-bottom: 22px; border-radius: 18px; }
+      .hero-tagline { font-size: 1em; }
+      .hero-sub { font-size: 0.95em; margin-bottom: 28px; }
+      .hero-cta { width: 100%; flex-direction: column; gap: 10px; }
+      .hero-cta .btn { width: 100%; justify-content: center; padding: 13px 22px; }
+      .hero-badges { gap: 6px; margin-top: 28px; }
+      .hero-badge { font-size: 0.74em; padding: 4px 10px; }
+
+      /* Topbar: hide text nav links — keep brand + "Add to Chrome" CTA only */
+      .topbar-inner { padding: 12px 16px; }
+      .topbar-links a:not(.topbar-cta) { display: none; }
+      .topbar-links { gap: 12px; }
+      .brand { font-size: 0.98em; }
+
+      /* Manifesto + final CTA */
+      .manifesto { padding: 40px 0; }
+      .manifesto-quote { font-size: 1.05em; }
+      .manifesto-sub { font-size: 0.92em; margin-top: 14px; }
+      .final-cta { padding: 56px 0; }
+      .final-cta h2 { font-size: 1.7em; }
+      .final-cta p { font-size: 0.95em; }
+
+      /* Section headings */
+      .section-title { font-size: 1.6em; }
+      .section-lead { font-size: 0.98em; }
+      .section-eyebrow { font-size: 0.72em; letter-spacing: 0.1em; }
+
+      /* Feature rows already stack at 880; tighten gap on small screens */
+      .feature-row, .feature-row.reverse { gap: 28px; }
+
+      /* Comparison table */
+      .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .compare-table th, .compare-table td { padding: 10px 12px; font-size: 0.82em; }
+      .compare-table td.cell-feature { width: auto; min-width: 140px; }
+      .compare-table .mark { width: 18px; height: 18px; line-height: 18px; font-size: 0.7em; margin-right: 6px; }
+
+      /* Provider pills */
+      .provider-pill { font-size: 0.85em; padding: 8px 14px; }
+      .provider-pill .free { font-size: 0.68em; padding: 2px 6px; }
+
+      /* Privacy card */
+      .privacy-card { padding: 24px 18px; }
+
+      /* User manual */
+      .manual-toc { padding: 16px 18px; }
+      .manual-section { padding: 22px 18px; }
+      .manual-section h3 { font-size: 1.1em; gap: 10px; }
+      .manual-section h3 .num { width: 24px; height: 24px; line-height: 24px; font-size: 0.72em; }
+      .manual-section .example { padding: 8px 12px; font-size: 0.88em; }
+      .manual-section .callout-tip,
+      .manual-section .callout-warn { padding: 10px 14px; font-size: 0.88em; }
+
+      /* Footer */
+      footer { padding: 28px 0 36px; font-size: 0.85em; }
+      footer .footer-links { gap: 16px; }
+    }
+
+    /* Small phones */
+    @media (max-width: 480px) {
+      .wrap { padding: 0 14px; }
+      section { padding: 44px 0; }
+
+      .hero { padding: 44px 0 36px; }
+      .hero-logo { width: 64px; height: 64px; margin-bottom: 18px; border-radius: 16px; }
+      .hero h1 { letter-spacing: -0.02em; }
+      .hero-tagline { font-size: 0.95em; max-width: 90%; }
+      .hero-sub { font-size: 0.9em; max-width: 90%; }
+      .hero-badges { margin-top: 22px; }
+
+      .topbar-inner { padding: 10px 14px; }
+      .topbar-cta { padding: 7px 12px; font-size: 0.82em; }
+      .brand { gap: 8px; font-size: 0.95em; }
+      .brand img { width: 24px; height: 24px; border-radius: 6px; }
+
+      .section-title { font-size: 1.4em; }
+      .section-lead { font-size: 0.95em; }
+
+      .compare-table th, .compare-table td { padding: 8px 10px; font-size: 0.78em; }
+
+      .privacy-card { padding: 20px 16px; }
+      .manual-section { padding: 20px 14px; }
+      .manual-section h3 { font-size: 1.05em; }
+      .manual-section p, .manual-section li { font-size: 0.9em; }
+
+      .final-cta { padding: 48px 0; }
+      .final-cta h2 { font-size: 1.5em; }
+    }
   </style>
 </head>
 <body>
@@ -624,7 +732,7 @@
         </ul>
       </div>
       <div class="feature-image">
-        <img src="screenshots/Agent_mode_new.jpg" alt="WebWright agent completing a YouTube search task autonomously">
+        <img src="screenshots/webwright_poster%20(1).png" alt="WebWright agent completing a YouTube search task autonomously">
       </div>
     </div>
   </section>
@@ -644,7 +752,7 @@
         </ul>
       </div>
       <div class="feature-image">
-        <img src="screenshots/Chat_mode_new.jpg" alt="WebWright Chat Mode explaining the Hilbert Hotel paradox while viewing a YouTube video">
+        <img src="screenshots/webbwright_chat.png" alt="WebWright Chat Mode explaining the Hilbert Hotel paradox while viewing a YouTube video">
       </div>
     </div>
   </section>
@@ -664,7 +772,7 @@
         </ul>
       </div>
       <div class="feature-image">
-        <img src="screenshots/Research_mode_new.jpg" alt="WebWright Research Mode showing Google AI Overview and source summaries on AI agents in 2026">
+        <img src="screenshots/webwright_poster_research.png" alt="WebWright Research Mode showing Google AI Overview and source summaries on AI agents in 2026">
       </div>
     </div>
   </section>
@@ -684,7 +792,7 @@
         </ul>
       </div>
       <div class="feature-image">
-        <img src="screenshots/UI_new.jpg" alt="WebWright sidebar and settings panel showing eight LLM provider tabs and model fields">
+        <img src="screenshots/webwright_poster_config_workflows%20(2).png" alt="WebWright sidebar and settings panel showing eight LLM provider tabs and model fields">
       </div>
     </div>
   </section>

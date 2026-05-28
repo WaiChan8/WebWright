@@ -815,6 +815,49 @@
       fill: none; stroke: currentColor;
       stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
     }
+    .agent-log-plan {
+      padding: 8px 12px 10px;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(124,106,239,0.04), transparent);
+      animation: step-in 0.4s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .agent-log-plan.hidden { display: none; }
+    .agent-log-plan-title {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 10px; font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .agent-log-plan-title svg {
+      width: 11px; height: 11px;
+      fill: none; stroke: currentColor;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .agent-log-plan ol {
+      list-style: none; padding: 0; margin: 0;
+      counter-reset: planstep;
+    }
+    .agent-log-plan li {
+      counter-increment: planstep;
+      position: relative;
+      padding: 3px 0 3px 22px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .agent-log-plan li::before {
+      content: counter(planstep);
+      position: absolute; left: 0; top: 3px;
+      width: 16px; height: 16px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-radius: 50%;
+      font-size: 9px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
     .agent-log-steps {
       padding: 0 12px 10px;
     }
